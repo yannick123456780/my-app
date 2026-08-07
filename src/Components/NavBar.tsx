@@ -1103,12 +1103,13 @@ function NavBar({ hasShadow = false }: NavBarProps) {
                 {user ? (
                   <div className="border-t pt-4">
                     <div className="flex items-center gap-3 mb-3">
-                      {profile?.avatar_url ? (
-                        <img
-                          src={profile.avatar_url}
-                          className="w-12 h-12 rounded-full object-cover"
-                          alt={profile.username ?? "Profil utilisateur"}
-                        />
+                                      {profile?.avatar_url ? (
+                  <img
+                    src={profile.avatar_url}
+                    className="w-12 h-12 rounded-full object-cover"
+                    alt={String(profile.username ?? "Profil utilisateur")}
+                  />
+                ) : null}
                       ) : (
                         <div
                           className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
