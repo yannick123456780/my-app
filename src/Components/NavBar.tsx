@@ -1105,9 +1105,9 @@ function NavBar({ hasShadow = false }: NavBarProps) {
                     <div className="flex items-center gap-3 mb-3">
                       {profile?.avatar_url ? (
                         <img
-                          src={profile.avatar_url}
+                          src={profile.avatar_url ?? undefined}
                           className="w-12 h-12 rounded-full object-cover"
-                          alt={profile?.username}
+                          alt={profile?.username ?? undefined}
                         />
                       ) : (
                         <div
