@@ -6,7 +6,7 @@ import type { Session, User } from "@supabase/supabase-js";
 export interface UserProfile {
   id: string;
   username: string | null;
-  avatar_url: string | null;
+  avatar_url: string | undefined;
   created_at: string;
   color_code?: string;
 }
