@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+select {
+  flex: 1;
+}
+select {
+  border: 2px solid #dddddd;
+  background: white;
+  padding: 10px;
+  transition: 0.4s;
+}
+
+select:hover,
+select:focus {
+  background: #dddddd;
+}
+select::picker-icon {
+  color: #999999;
+  transition: 0.4s rotate;
+}
+select:open::picker-icon {
+  rotate: 180deg;
+}
+::picker(select) {
+  border: none;
+}
+option {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  background: white;
+  padding: 10px;
+  transition: 0.4s;
+}
+option:first-of-type {
+  border-radius: 8px 8px 0 0;
+}
+
+option:last-of-type {
+  border-radius: 0 0 8px 8px;
+}
+
+::picker(select) {
+  border-radius: 8px;
+}
+
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+
+
+option:hover,
+option:focus {
+  background: #e9e9eb;
+}
+option .icon {
+  font-size: 1.6rem;
+  text-box: trim-both cap alphabetic;
+}
+selectedcontent .icon {
+  display: none;
+}
+option:checked {
+  font-weight: bold;
+  background-color:  #f56c2a;
+  color: white;
+}
+option::checkmark {
+  order: 1;
+  margin-left: auto;
+  content: \2713;
+  color: black;
+  
+}
+::picker(select) {
+  opacity: 0;
+  transition: all 0.4s allow-discrete;
+}
+:open::picker(select) {
+  opacity: 1;
+}
+@starting-style {
+  :open::picker(select) {
+    opacity: 0;
+  }
+}
+::picker(select) {
+  top: anchor(bottom);           /* colle en dessous du select */
+  left: anchor(left);            /* aligne à gauche */
+  width: anchor-size(width);     /* prend la largeur du select */
+  margin-top: 4px;               /* petit espace (optionnel) */
+  border: none;                  /* déjà présent dans votre code */
+  border-radius: 8px;            /* à conserver ou ajuster */
+  background: white;             /* pour un fond propre */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* petite ombre */
+}
+@supports not (appearance: base-select) {
+  body::before {
+    content: "Your browser does not support `appearance: base-select`.";
+    color: black;
+    background-color: wheat;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 40%;
+    text-align: center;
+    padding: 1rem 0;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wazza | site de petites annonces gratuites</title>
+    <!-- Dans votre index.html, avant les autres scripts -->
+<script>
+  // Désactiver les AbortError globalement pour le développement
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    const originalPromise = window.Promise;
+    
+    window.Promise = class SafePromise extends originalPromise {
+      constructor(executor) {
+        super((resolve, reject) => {
+          executor(
+            resolve,
+            (reason) => {
+              // Intercepter et ignorer les AbortError
+              if (reason && reason.name === 'AbortError') {
+                console.log('[SafePromise] AbortError interceptée et ignorée:', reason.message);
+                return;
+              }
+              reject(reason);
+            }
+          );
+        });
+      }
+    };
+    
+    // Copier les méthodes statiques
+    Object.setPrototypeOf(window.Promise, originalPromise);
+    window.Promise.all = originalPromise.all;
+    window.Promise.race = originalPromise.race;
+    window.Promise.resolve = originalPromise.resolve;
+    window.Promise.reject = originalPromise.reject;
+    window.Promise.allSettled = originalPromise.allSettled;
+    window.Promise.any = originalPromise.any;
+    
+    console.log('[DEV] SafePromise activé pour ignorer les AbortError');
+  }
+</script>
+    <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            // PRINCIPALES - retrouvées sur le site
+            "primary": "#f56c2a",     // Orange vif (boutons, liens actifs)
+            "primary-hover": "#e55b19", // Orange plus foncé au survol
+
+             // NEUTRES - fond principal et textes
+            "background-light": "#ffffff",    // Blanc pur (fond de page)
+            "card-light": "#ffffff",
+            "text-main-light": "#2c2738",
+            "text-secondary-light": "#5a5a5a",
+            "border-light": "#e7dbcf",
+            
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+   <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
