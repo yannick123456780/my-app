@@ -2504,11 +2504,9 @@ function NavBar({ hasShadow = false }: NavBarProps) {
                             "/listings/?category=emploi&subcategory=formations-professionnelles",
                           )}
                           className="font-semibold text-gray-900 hover:text-[#f56c2a]"
-                          style={{
-                            height: "clamp(42px,4.2vw,62px)",
-                            fontSize: "clamp(13px,1.2vw,20px)",
-                            marginBottom: "clamp(13px,1.2vw,20px)",
-                          }}
+                         style={{
+                          fontSize: "clamp(10px, 1.3vw, 15px)",
+                        }}
                         >
                           Formations professionnelles
                         </Link>
@@ -2520,10 +2518,8 @@ function NavBar({ hasShadow = false }: NavBarProps) {
                           )}
                           className="font-semibold text-gray-900 hover:text-[#f56c2a]"
                           style={{
-                            height: "clamp(42px,4.2vw,62px)",
-                            fontSize: "clamp(13px,1.2vw,20px)",
-                            marginBottom: "clamp(13px,1.2vw,20px)",
-                          }}
+                          fontSize: "clamp(10px, 1.3vw, 15px)",
+                        }}
                         >
                           Profil Candidat
                         </Link>
