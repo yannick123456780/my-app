@@ -5,8 +5,8 @@ import type { Session, User } from "@supabase/supabase-js";
 /** Profil stocké en DB */
 export interface UserProfile {
   id: string;
-  username: string ;
-  avatar_url: string ;
+  username: string | null;
+  avatar_url: string | null;
   created_at: string;
   color_code?: string | null;
 }
